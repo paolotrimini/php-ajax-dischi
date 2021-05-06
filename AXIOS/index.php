@@ -55,12 +55,10 @@
         .album-information span {
             font-weight: bold;
         }
+
         .container img {
             width: 100%;
         }
-
-
-
 
     </style>
 
@@ -80,12 +78,10 @@
 
                     axios.get('data.php')
                         .then((data) => {
-                            this.albums = data.data.response;
-
+                            this.albums = data.data;
                         })
                         .catch(() => console.log('error'));
                 },
-
             })
         }
 
@@ -94,7 +90,6 @@
 
         }
         document.addEventListener('DOMContentLoaded', init);
-
 
     </script>
 
@@ -117,25 +112,29 @@
             </div>
         </div>
 
+        <!-- MAIN-->
+
         <div class="col-lg-3 col-md-6 main-container"
-             v-for="">
+             v-for="album in albums">
             <div class="albums-box">
                 <div class="poster-box">
-                    <img :src="" :alt="">
+                    <img :src="album.poster" :alt="album.title">
                 </div>
-                <!-- info ALBUMS -->
+
+                <!-- INFO ALBUMS -->
+
                 <div class="album-information">
                     <div class="box-title">
-                        <h3>{{  }}</h3>
+                        <h3>{{ album.title }}</h3>
                     </div>
                     <div>
-                        <p><span>Author: </span>{{  }}</p>
+                        <p><span>Author: </span>{{ album.author }}</p>
                     </div>
                     <div>
-                        <p><span>Genre: </span>{{  }}</p>
+                        <p><span>Genre: </span>{{ album.genre }}</p>
                     </div>
                     <div>
-                        <p><span>Year: </span>{{  }}</p>
+                        <p><span>Year: </span>{{ album.year }}</p>
                     </div>
                 </div>
             </div>

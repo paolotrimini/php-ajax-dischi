@@ -1,7 +1,7 @@
     <?php
         header('Content-Type: application/json');
 
-        $albums = [
+        $db = [
             [
                 "poster" => "https://www.onstageweb.com/wp-content/uploads/2018/09/bon-jovi-new-jersey.jpg",
                 "title" => "New Jersey",
@@ -73,5 +73,5 @@
                 "year" => "1987"
             ]
         ];
-        echo json_encode($albums);
+        echo json_encode($db);
     ?>

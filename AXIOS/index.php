@@ -15,23 +15,85 @@
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: darkgoldenrod;
-            color: white;
+            font-family: 'Roboto', sans-serif;
+            color: black;
+            /*debug*/
+            background-color: darkorange;
         }
-        hr {
-            background: white;
+
+        .main-container {
+            /*debug*/
+            /*background-color: red;*/
         }
-        img {
-            width: 200px;
-            height: 200px;
+
+        .head-bar {
+            text-align: center;
+            margin-top: 20px;
+            /*debug*/
+            /*background-color: hotpink;*/
         }
+
+        .albums-box {
+            margin: 10px;
+            padding: 20px;
+        }
+
+        .album-information {
+            text-align: center;
+            margin-top: 10px;
+            /*debug*/
+            /* background-color: red;*/
+        }
+
+        .album-information span {
+            font-weight: bold;
+        }
+        .container img {
+            width: 100%;
+        }
+
+
+
 
     </style>
 
     <!-- VUE JS -->
 
     <script>
+        function initVue(){
+
+            new Vue({
+                el: '#app',
+                data: {
+
+                    albums:[],
+                },
+
+                mounted() {
+
+                    axios.get('data.php')
+                        .then((data) => {
+                            this.albums = data.data.response;
+
+                        })
+                        .catch(() => console.log('error'));
+                },
+
+            })
+        }
+
+        function init() {
+            initVue();
+
+        }
+        document.addEventListener('DOMContentLoaded', init);
 
 
     </script>
@@ -44,6 +106,42 @@
 
 </head>
 <body>
+<div id="app" class="container">
+    <div class="row">
+
+        <!-- HEADER -->
+
+        <div class="col-12 head-bar">
+            <div>
+                <h1>Albums</h1>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 main-container"
+             v-for="">
+            <div class="albums-box">
+                <div class="poster-box">
+                    <img :src="" :alt="">
+                </div>
+                <!-- info ALBUMS -->
+                <div class="album-information">
+                    <div class="box-title">
+                        <h3>{{  }}</h3>
+                    </div>
+                    <div>
+                        <p><span>Author: </span>{{  }}</p>
+                    </div>
+                    <div>
+                        <p><span>Genre: </span>{{  }}</p>
+                    </div>
+                    <div>
+                        <p><span>Year: </span>{{  }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 
